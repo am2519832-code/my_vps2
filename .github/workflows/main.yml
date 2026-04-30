@@ -8,28 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
-      - name: Install tmate
-        run: |
-          sudo apt update
-          sudo apt install -y tmate
-      
-      - name: Start tmate
-        run: |
-          echo "=========================================="
-          echo "✅ سرور در حال آماده شدن..."
-          echo "لطفاً 30 ثانیه صبر کنید"
-          echo "=========================================="
-          sudo tmate -S /tmp/tmate.sock new-session -d
-          sudo tmate -S /tmp/tmate.sock wait tmate-ready
-          sleep 10
-          echo ""
-          echo "🔗 لینک اتصال SSH (کپی کن):"
-          sudo tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
-          echo ""
-          echo "=========================================="
-          echo "سرور تا 6 ساعت فعال خواهد بود"
-          echo "برای خروج از سرور: exit بزن"
-          echo "=========================================="
-      
-      - name: Keep alive
-        run: sleep 21600
+      - name: Setup tmate
+        uses: mxschmitt/action-tmate@v3
