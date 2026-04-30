@@ -1,0 +1,30 @@
+name: SSH Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ssh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Install tmate
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tmate
+      
+      - name: Run tmate
+        run: |
+          tmate -S /tmp/tmate.sock new-session -d
+          tmate -S /tmp/tmate.sock wait tmate-ready
+          echo "=============================="
+          echo "👉 لینک اتصال به سرور: 👈"
+          echo ""
+          tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
+          echo ""
+          echo "=============================="
+          echo "سرور تا 6 ساعت فعال است"
+          echo "بعد از اتصال، دستورات مورد نظر را اجرا کن"
+      
+      - name: Keep Alive
+        run: sleep 21600
