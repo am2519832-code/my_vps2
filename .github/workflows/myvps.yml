@@ -1,0 +1,12 @@
+name: My-VPS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ssh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - name: Start tmate
+        uses: mxschmitt/action-tmate@v3
