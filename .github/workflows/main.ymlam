@@ -1,0 +1,12 @@
+name: VPS-Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  vps-session:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
